@@ -22,6 +22,18 @@ class DynamoDBApi {
         }
     }
 
+    async getAllItems() {
+        try {
+            const params = { TableName: this.tableName };
+            const { Items } = await docClient.scan(params).promise();
+
+            return Items;
+        } catch (err) {
+            const errorMsg = `Unable to get all items item. Error JSON:: ${err.message}`;
+            throw new Error(errorMsg);
+        }
+    }
+
     async getItemById(id) {
         try {
             const params = {
