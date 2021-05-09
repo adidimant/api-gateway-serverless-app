@@ -53,7 +53,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /
+            Path: /entry
             Method: POST
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
@@ -80,7 +80,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /
+            Path: /exit
             Method: POST
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
