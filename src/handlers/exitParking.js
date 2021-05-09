@@ -17,9 +17,13 @@ exports.handler = async (event) => {
     const { ticketId } = pathParameters;
     const Item = await dynamoApi.getItemById(ticketId);
 
+    if (Item.exitDate) {
+        throw new Error(`Car already left the parking. exit date - ${Item.exitDate}`);
+    }
+
     console.log(`Item to update - ${JSON.stringify(Item)}`);
 
-    const currentTime = new Date();
+    const currentTime = new Date().getTime();
     const quarterHoursAmount = Math.abs(currentTime - Item.entryDate) / 36e5 / 4;
 
     await dynamoApi.updateAfterExit(ticketId, STATUSES.FINISHED, currentTime);

@@ -25,7 +25,7 @@ exports.handler = async (event) => {
         id: uuid(),
         plate,
         parkingLot,
-        entryDate: new Date(),
+        entryDate: new Date().getTime(),
         exitDate: null,
         status: STATUSES.PARKING
     };
