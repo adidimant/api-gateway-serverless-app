@@ -45,3 +45,9 @@
 //         expect(result).toEqual(expectedResult);
 //     });
 // });
+
+describe('Test getAllItemsHandler', () => {
+    it('sanity test', async () => {
+        expect(true).toEqual(true);
+    });
+});
