@@ -32,7 +32,7 @@ exports.handler = async (event) => {
 
     console.log(`Dynamo item to put - ${JSON.stringify(dynamoItem)}`);
 
-    await dynamoApi.putItem(tableName, dynamoItem);
+    await dynamoApi.putItem(dynamoItem);
 
     const response = {
         statusCode: 200,
