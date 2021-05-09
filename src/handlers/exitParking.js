@@ -17,10 +17,12 @@ exports.handler = async (event) => {
     const { ticketId } = pathParameters;
     const Item = await dynamoApi.getItemById(ticketId);
 
+    console.log(`Item to update - ${JSON.stringify(Item)}`);
+
     const currentTime = new Date();
     const quarterHoursAmount = Math.abs(currentTime - Item.entryDate) / 36e5 / 4;
 
-    await dynamoApi.updateAfterExit(id, STATUSES.FINISHED, currentTime);
+    await dynamoApi.updateAfterExit(ticketId, STATUSES.FINISHED, currentTime);
 
     const response = {
         statusCode: 200,
