@@ -34,11 +34,10 @@ class DynamoDBApi {
         }
     }
 
-    async getItemById(tickedId) {
-        console.log(tickedId);
+    async getItemById(id) {
         const params = {
             TableName: this.tableName,
-            Key: { id: tickedId },
+            Key: { id },
         };
         try {
             const { Item } = await docClient.get(params).promise();
