@@ -35,6 +35,7 @@ class DynamoDBApi {
     }
 
     async getItemById(tickedId) {
+        console.log(tickedId);
         const params = {
             TableName: this.tableName,
             Key: { id: tickedId },
