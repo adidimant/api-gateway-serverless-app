@@ -24,7 +24,7 @@ exports.handler = async (event) => {
     console.log(`Item to update - ${JSON.stringify(Item)}`);
 
     const currentTime = new Date().getTime();
-    const quarterHoursAmount = Math.abs(currentTime - Item.entryDate) / 36e5 / 4;
+    const quarterHoursAmount = Math.abs(currentTime - Item.entryDate) / 1000 / 3600;
 
     await dynamoApi.updateAfterExit(ticketId, STATUSES.FINISHED, currentTime);
 
@@ -38,6 +38,6 @@ exports.handler = async (event) => {
         },
     };
 
-    console.log(`response from: ${path} statusCode: ${response.statusCode} body: ${response.body}`);
+    console.log(`response from: ${path} statusCode: ${response.statusCode} body: ${JSON.stringify(response.body)}`);
     return response;
 };
