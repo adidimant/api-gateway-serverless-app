@@ -1,6 +1,6 @@
 
 const DynamoDBApi = require('../lib/dynamoApi');
-const tableName = process.env.SAMPLE_TABLE; //TODO - move to pipline, and improve general consts!
+const tableName = process.env.SAMPLE_TABLE;
 const dynamoApi = new DynamoDBApi(tableName);
 const { STATUSES, PRICE_PER_QUARTER_HOUR } = require('../lib/consts');
 

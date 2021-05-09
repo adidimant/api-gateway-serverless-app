@@ -1,7 +1,7 @@
 
 const uuid = require('uuid');
 const DynamoDBApi = require('../lib/dynamoApi');
-const tableName = process.env.SAMPLE_TABLE; //TODO - move to pipline, and improve general consts!
+const tableName = process.env.SAMPLE_TABLE;
 const dynamoApi = new DynamoDBApi(tableName);
 const { STATUSES } = require('../lib/consts');
 
@@ -29,6 +29,8 @@ exports.handler = async (event) => {
         exitDate: null,
         status: STATUSES.PARKING
     };
+
+    console.log(`Dynamo item to put - ${JSON.stringify(dynamoItem)}`);
 
     await dynamoApi.putItem(tableName, dynamoItem);
 
