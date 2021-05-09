@@ -35,16 +35,15 @@ class DynamoDBApi {
     }
 
     async getItemById(id) {
+        const params = {
+            TableName: this.tableName,
+            Key: { id },
+        };
         try {
-            const params = {
-                TableName: this.tableName,
-                Key: { id },
-            };
             const { Item } = await docClient.get(params).promise();
-
             return Item;
         } catch (err) {
-            const errorMsg = `Unable to get parking item. Error JSON:: ${err.message}`;
+            const errorMsg = `Unable to get parking item. params - ${JSON.stringify(params)}, Error JSON:: ${err.message}`;
             throw new Error(errorMsg);
         }
     }
