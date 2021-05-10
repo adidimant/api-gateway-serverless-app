@@ -15,10 +15,6 @@ Transform: AWS::Serverless-2016-10-31
 # https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    # The PermissionsBoundary allows users to safely develop with their function's permissions constrained
-    # to their current application. All the functions and roles in this application have to include it and
-    # it has to be manually updated when you add resources to your application.
-    # More information in https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html
     PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${AppId}-${AWS::Region}-PermissionsBoundary'
 
 Parameters:
@@ -28,10 +24,7 @@ Parameters:
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
-  # Each Lambda function is defined by properties:
-  # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
-
-  # This is a Lambda function config associated with the source code: put-item.js
+  # This is a Lambda function config associated with the source code: entryParking.js
   entryParking:
     Type: AWS::Serverless::Function
     Properties:
@@ -58,7 +51,7 @@ Resources:
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
 
-  # This is a Lambda function config associated with the source code: put-item.js
+  # This is a Lambda function config associated with the source code: exitParking.js
   exitParking:
     Type: AWS::Serverless::Function
     Properties:
@@ -82,8 +75,6 @@ Resources:
           Properties:
             Path: /exit
             Method: POST
-  # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
-  # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
 
   # DynamoDB table to store item: {id: <ID>, name: <NAME>}
   SampleTable:
