@@ -41,6 +41,6 @@ exports.handler = async (event) => {
         },
     };
 
-    console.log(`response from: ${path} statusCode: ${response.statusCode} body: ${response.body}`);
+    console.log(`response from: ${path} statusCode: ${response.statusCode} body: ${JSON.stringify(response.body)}`);
     return response;
 };
