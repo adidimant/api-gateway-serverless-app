@@ -4,11 +4,9 @@ const tableName = process.env.SAMPLE_TABLE;
 const dynamoApi = new DynamoDBApi(tableName);
 const { STATUSES, PRICE_PER_QUARTER_HOUR } = require('../lib/consts');
 
-/**
- * A simple example includes a HTTP post method to add one item to a DynamoDB table.
- */
+
 exports.handler = async (event) => {
-    const { body, httpMethod, path, pathParameters } = event; //TODO - remove if not necassary!
+    const { httpMethod, path, pathParameters } = event;
     if (httpMethod !== 'POST') {
         throw new Error(`postMethod only accepts POST method, you tried: ${httpMethod} method.`);
     }

@@ -6,13 +6,8 @@ const dynamoApi = new DynamoDBApi(tableName);
 const { STATUSES } = require('../lib/consts');
 
 
-// Get the DynamoDB table name from environment variables
-
-/**
- * A simple example includes a HTTP post method to add one item to a DynamoDB table.
- */
 exports.handler = async (event) => {
-    const { body, httpMethod, path, pathParameters } = event;
+    const { httpMethod, path, pathParameters } = event;
     if (httpMethod !== 'POST') {
         throw new Error(`postMethod only accepts POST method, you tried: ${httpMethod} method.`);
     }
