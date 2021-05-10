@@ -24,7 +24,7 @@ exports.handler = async (event) => {
     console.log(`Item to update - ${JSON.stringify(Item)}`);
 
     const currentTime = new Date().getTime();
-    const quarterHoursAmount = Math.abs(currentTime - Item.entryDate) / 1000 / 3600;
+    const hoursAmount = (currentTime - Item.entryDate) / 3600000;
 
     await dynamoApi.updateAfterExit(ticketId, STATUSES.FINISHED, currentTime);
 
@@ -32,9 +32,9 @@ exports.handler = async (event) => {
         statusCode: 200,
         body: {
             plate: Item.plate,
-            totalParkingTimeInHours: quarterHoursAmount * 4,
+            totalParkingTimeInHours: hoursAmount,
             parkingLot: Item.parkingLot,
-            charge: quarterHoursAmount * PRICE_PER_QUARTER_HOUR
+            charge: hoursAmount * 4 * PRICE_PER_QUARTER_HOUR
         },
     };
 
